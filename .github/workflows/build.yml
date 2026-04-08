@@ -42,12 +42,14 @@ jobs:
         run: west update
       - name: West Zephyr export
         run: west zephyr-export
+      - name: Install Nanopb dependencies
+        run: pip3 install protobuf grpcio-tools
       - name: West Build (Form)
         run: west build -s zmk/app -b stp -S studio-rpc-usb-uart -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Form Kconfig file
         run: grep -vE '(^#|^$)' build/zephyr/.config
       - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 ${{ steps.get_info.outputs.file_prefix }}-Form.uf2 
+        run: cp build/zephyr/zmk.uf2 ${{ steps.get_info.outputs.file_prefix }}-Form.uf2
       - name: Archive (Form)
         uses: actions/upload-artifact@v4
         with:
