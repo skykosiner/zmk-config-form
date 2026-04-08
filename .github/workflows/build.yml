@@ -43,7 +43,7 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: Install Nanopb dependencies
-        run: pip3 install protobuf grpcio-tools
+        run: python3 -m pip install protobuf grpcio-tools
       - name: West Build (Form)
         run: west build -s zmk/app -b stp -S studio-rpc-usb-uart -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Form Kconfig file
