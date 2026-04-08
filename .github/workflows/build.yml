@@ -46,7 +46,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y python3-pip
-          python3 -m pip install protobuf grpcio-tools
+          python3 -m pip install --break-system-packages protobuf grpcio-tools
       - name: West Build (Form)
         run: west build -s zmk/app -b stp -S studio-rpc-usb-uart -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Form Kconfig file
